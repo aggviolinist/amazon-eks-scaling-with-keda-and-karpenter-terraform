@@ -51,3 +51,46 @@ variable "karpenter_node_instance_type" {
   type        = list(string)
   default     = ["t2.medium", "t3.medium"]
 }
+
+variable "keda_version" {
+  description = "KEDA Helm chart verison"
+  type = string
+  default = "2.19.0"
+}
+
+variable "keda_namespace" {
+  type = string
+  default = "keda"
+}
+
+variable "keda_operator_service_account" {
+  type = string
+  default = "keda-operator"
+}
+
+variable "keda_app_namespace" {
+  description = "Namespace for the demo app KEDA scales"
+  type = string
+  default = "keda-test-app"
+}
+
+variable "keda_app_service_account" {
+  type = string
+  default = "keda-service-account"
+}
+
+variable "keda_target_deployment" {
+  description = "Name of the k8s deplyoment KEDA scales"
+  type = string
+  default = "sqs-app"
+}
+
+variable "dynamodb_table_name" {
+  type = string
+  default = "payments"
+}
+
+variable "sqs_queue_name" {
+  type = string
+  default = "keda-demo-queue.fifo"
+}
