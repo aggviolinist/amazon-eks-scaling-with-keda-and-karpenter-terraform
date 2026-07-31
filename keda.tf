@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "keda" {
   }
 }
 
-resource "kubernetes_namespace" "keda_test" {
+resource "kubernetes_namespace" "keda_test_app" {
     metadata {
       name = var.keda_app_namespace
     }
