@@ -1,7 +1,7 @@
 resource "kubectl_manifest" "keda_trigger_authentication" {
     yaml_body = <<-YAML
       apiVersion: keda.sh/v1alpha1
-      Kind: TriggerAuthentication
+      kind: TriggerAuthentication
       metadata: 
         name: keda-aws-creds
         namespace: ${var.keda_app_namespace}
@@ -15,13 +15,13 @@ resource "kubectl_manifest" "keda_trigger_authentication" {
 
 resource "kubectl_manifest" "keda_scaled_object" {
     yaml_body = <<-YAML
-       apiVersion: keda.sh/alpha1
-       Kind: ScaledObject
+       apiVersion: keda.sh/v1alpha1
+       kind: ScaledObject
        metadata:
          name: aws-sqs-queue-scaledobject
          namespace: ${var.keda_app_namespace}
        spec:
-         scaledTargetRef: 
+         scaleTargetRef: 
            name: ${var.keda_target_deployment}
          minReplicaCount: 1
          maxReplicaCount: 15
@@ -32,7 +32,7 @@ resource "kubectl_manifest" "keda_scaled_object" {
              authenticationRef:
                name: keda-aws-creds
              metadata:
-               queueURL: ${aws_sqs_queue.demo.url}
+               queueURL: ${aws_sqs_queue.demo_scaling_app.url}
                queueLength: "1"
                awsRegion: ${var.aws_region}
                identityOwner: operator

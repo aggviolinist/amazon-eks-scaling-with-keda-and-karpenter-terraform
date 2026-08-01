@@ -52,7 +52,7 @@ resource "kubernetes_deployment" "sqs_app" {
             value = aws_sqs_queue.demo_scaling_app.url
           }
           env {
-            name = "DYNAMO_TABLE"
+            name = "DYNAMODB_TABLE"
             value= aws_dynamodb_table.demo_scaling_app.name
           }
           env {
