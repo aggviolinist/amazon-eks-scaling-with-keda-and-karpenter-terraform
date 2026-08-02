@@ -1,3 +1,5 @@
+> ![Alt text](./keda-auto-scaling.gif?raw=true "gif")
+
 amazon-eks-scaling-with-keda-and-karpenter-terraform/
 ├── README.md                 # phased how-to + teaching notes, mirrors original README structure
 ├── versions.tf               # terraform{} + required_providers: aws, kubernetes, helm, kubectl (alekc/kubectl), tls
